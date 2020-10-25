@@ -1,0 +1,38 @@
+<div class="row mt-5">
+  <div class="col">
+    <h4 class="display-4 mb-0 size-2">Page loading animation</h4>
+    <hr class="mt-0 mb-4">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col text-center">
+    <table class="table table-sm table-bordered table-dark pointer">
+      <tr>
+        <td (click)="show()">Default</td>
+        <td (click)="show({hideMessage: true})">No message</td>
+        <td (click)="show({message: 'Loading...'})">With message</td>
+        <td (click)="show({message: 'Loading...', marginTop:'65px'})">Message & Margin Top</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col">
+    <pre><code class="language-typescript">
+      compRef: ComponentRef&lt;PageLoadingWorker&gt;;
+
+      {{'constructor(private pageLoadingWorker: PageLoadingWorker) {'}}
+      {{'}'}}
+
+      {{'show(options: DisplayOptionsInterface): void {'}}
+      this.compRef = this.pageLoadingWorker.display(options);
+      }
+
+      {{'hide(): void {'}}
+      this.pageLoadingWorker.destroy(this.compRef);
+      }
+    </code></pre>
+  </div>
+</div>

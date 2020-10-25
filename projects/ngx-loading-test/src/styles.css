@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../../ngx-loading/src/assets/css/ngx-loading.css";
+@import "../../ngx-loading/src/assets/css/page-loading.css";
+@import "../../ngx-loading/src/assets/css/sliding-dots.css";
+@import "../../ngx-loading/src/assets/css/bouncing-dots.css";
+
+.size-2 {
+    font-size: 2rem;
+}
+
+.table-dark.pointer td {
+    width: 25%;
+}
+
+.table-dark.pointer td:hover {
+    cursor: pointer;
+    background-color: #23272b;
+}

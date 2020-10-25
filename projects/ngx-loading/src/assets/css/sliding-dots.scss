@@ -1,0 +1,55 @@
+// https://icons8.com/cssload
+// http://jsfiddle.net/yshadmehr/osfmwhvL/
+// http://developerplus.net/Blog/10
+.vlahio-sliding-dots div {
+  width: .5rem;
+  height: .5rem;
+  position: absolute;
+  background-color: #333;
+  border-radius: 50%;
+  -webkit-animation: move 4s infinite cubic-bezier(.2, .64, .81, .23);
+  animation: vlahio-move 4s infinite cubic-bezier(.2, .64, .81, .23);
+
+  .vlahio-sliding-dots-white & {
+    background-color: #fff;
+  }
+
+  &:nth-child(2) {
+    -webkit-animation-delay: 150ms;
+    animation-delay: 150ms;
+  }
+
+  &:nth-child(3) {
+    -webkit-animation-delay: 300ms;
+    animation-delay: 300ms;
+  }
+
+  &:nth-child(4) {
+    -webkit-animation-delay: 450ms;
+    animation-delay: 450ms;
+  }
+}
+
+@-webkit-keyframes vlahio-move {
+  0% {
+    left: 0;
+  }
+  75% {
+    left: calc(96% - .5rem);
+  }
+  100% {
+    left: calc(100% - .5rem);
+  }
+}
+
+@keyframes vlahio-move {
+  0% {
+    left: 0;
+  }
+  75% {
+    left: calc(96% - .5rem);
+  }
+  100% {
+    left: calc(100% - .5rem);
+  }
+}

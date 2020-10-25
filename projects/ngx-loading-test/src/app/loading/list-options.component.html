@@ -1,0 +1,66 @@
+<table class="table table-sm table-bordered">
+  <tr class="text-center">
+    <td>
+      <vlahio-loading [isVisible]="state" [align]="align" [color]="color"></vlahio-loading>
+    </td>
+    <td>
+      <code>
+        &lt;vlahio-loading [isVisible]="{{state}}" [align]="{{align}}" [color]="{{color}}"&gt;&lt;/vlahio-loading&gt;
+      </code>
+    </td>
+    <td><span class="badge badge-danger">not recommended</span></td>
+  </tr>
+  <tr class="text-center">
+    <td vlahioLoading [isVisible]="state" [color]="color" [align]="align"></td>
+    <td>
+      <code>
+        &lt;td vlahioLoading [isVisible]="{{state}}" [align]="{{align}}" [color]="{{color}}"&gt;&lt;/td&gt;
+      </code>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td vlahioLoading [isVisible]="true" [align]="align"></td>
+    <td class="text-center"
+        vlahioLoading [isVisible]="true" [color]="color"></td>
+    <td class="text-center"
+        vlahioLoading [isVisible]="state"></td>
+  </tr>
+  <tr class="text-center">
+    <td>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Horizontal alignment">
+        <button type="button" class="btn btn-dark"
+                *ngFor="let x of alignments"
+                [ngClass]="{active: align === x}"
+                (click)="align = x">{{x}}
+        </button>
+      </div>
+    </td>
+    <td>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Horizontal alignment">
+        <button type="button" class="btn btn-dark"
+                *ngFor="let c of colors"
+                [ngClass]="{active: color === c}"
+                (click)="color = 'vlahio-' + (c || 'dark')">{{c || 'dark'}}
+        </button>
+      </div>
+    </td>
+    <td>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Horizontal alignment">
+        <button type="button" class="btn btn-dark"
+                [ngClass]="{active: state === true}"
+                (click)="state = true">on
+        </button>
+        <button type="button" class="btn btn-sm btn-dark"
+                [ngClass]="{active: state === false}"
+                (click)="state = false">off
+        </button>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<pre><code class="language-typescript">
+  &lt;td vlahioLoading [isVisible]="true|false" [align]="left|center|right" [color]="vlahio-dark|green|red|..."&gt;&lt;/td&gt;
+
+</code></pre>

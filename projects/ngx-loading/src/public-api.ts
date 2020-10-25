@@ -1,7 +1,14 @@
-/*
- * Public API Surface of ngx-loading
- */
-
-export * from './lib/ngx-loading.service';
-export * from './lib/ngx-loading.component';
+export * from './lib/component/bouncing-dots.component';
+export * from './lib/component/loading.component';
+export * from './lib/component/page-loading.component';
+export * from './lib/component/sliding-dots.component';
+export * from './lib/directive/bouncing-dots.directive';
+export * from './lib/directive/loading.directive';
+export * from './lib/directive/page-loading.directive';
+export * from './lib/directive/sliding-dots.directive';
+export * from './lib/interface/ngx-loading.interface';
 export * from './lib/ngx-loading.module';
+export * from './lib/service/bouncing-dots.worker';
+export * from './lib/service/ngx-loading.service';
+export * from './lib/service/page-loading.worker';
+export * from './lib/service/sliding-dots.worker';

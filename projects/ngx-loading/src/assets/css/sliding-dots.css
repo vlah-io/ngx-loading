@@ -1,0 +1,49 @@
+.vlahio-sliding-dots div {
+  width: 0.5rem;
+  height: 0.5rem;
+  position: absolute;
+  background-color: #333;
+  border-radius: 50%;
+  -webkit-animation: move 4s infinite cubic-bezier(0.2, 0.64, 0.81, 0.23);
+  animation: vlahio-move 4s infinite cubic-bezier(0.2, 0.64, 0.81, 0.23);
+}
+.vlahio-sliding-dots-white .vlahio-sliding-dots div {
+  background-color: #fff;
+}
+.vlahio-sliding-dots div:nth-child(2) {
+  -webkit-animation-delay: 150ms;
+  animation-delay: 150ms;
+}
+.vlahio-sliding-dots div:nth-child(3) {
+  -webkit-animation-delay: 300ms;
+  animation-delay: 300ms;
+}
+.vlahio-sliding-dots div:nth-child(4) {
+  -webkit-animation-delay: 450ms;
+  animation-delay: 450ms;
+}
+
+@-webkit-keyframes vlahio-move {
+  0% {
+    left: 0;
+  }
+  75% {
+    left: calc(96% - .5rem);
+  }
+  100% {
+    left: calc(100% - .5rem);
+  }
+}
+@keyframes vlahio-move {
+  0% {
+    left: 0;
+  }
+  75% {
+    left: calc(96% - .5rem);
+  }
+  100% {
+    left: calc(100% - .5rem);
+  }
+}
+
+/*# sourceMappingURL=sliding-dots.css.map */

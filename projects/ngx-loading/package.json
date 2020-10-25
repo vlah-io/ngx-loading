@@ -1,11 +1,14 @@
 {
-  "name": "ngx-loading",
-  "version": "0.0.1",
+  "name": "@vlah.io/ngx-loading",
+  "version": "0.0.0",
   "peerDependencies": {
     "@angular/common": "^10.2.0",
-    "@angular/core": "^10.2.0"
+    "@angular/core": "^10.2.0",
+    "@vlah.io/ngx-worker": "^1.0.0",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.1"
   }
 }

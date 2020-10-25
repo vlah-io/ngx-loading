@@ -1,0 +1,78 @@
+/** https://projects.lukehaas.me/css-loaders/ */
+.vlahio-loader,
+.vlahio-loader:after {
+  border-radius: 50%;
+  width: 9em;
+  height: 9em;
+}
+
+.vlahio-loader {
+  display: inline-block;
+  margin: -3px auto;
+  font-size: 2px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.6em solid rgba(255, 213, 79, 0.4);
+  border-right: 1.6em solid rgba(255, 213, 79, 0.4);
+  border-bottom: 1.6em solid rgba(255, 213, 79, 0.4);
+  border-left: 1.6em solid #ffd54f;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: vlahio-load8 1.1s infinite linear;
+  animation: vlahio-load8 1.1s infinite linear;
+}
+@-webkit-keyframes vlahio-load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes vlahio-load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.vlahio-loader.vlahio-blue {
+  border-color: #BBDEFB;
+  border-left-color: #64B5F6;
+}
+.vlahio-loader.vlahio-red {
+  border-color: #F8BBD0;
+  border-left-color: #F06292;
+}
+.vlahio-loader.vlahio-green {
+  border-color: #B2DFDB;
+  border-left-color: #4DB6AC;
+}
+.vlahio-loader.vlahio-brown {
+  border-color: #D7CCC8;
+  border-left-color: #A1887F;
+}
+.vlahio-loader.vlahio-dark {
+  border-color: #E0E0E0;
+  border-left-color: #757575;
+}
+.vlahio-loader.vlahio-yellow {
+  border-color: #FFECB3;
+  border-left-color: #FFCA28;
+}
+.vlahio-loader.vlahio-white {
+  border-color: #FAFAFA;
+  border-left-color: #BDBDBD;
+}
+.vlahio-loader.vlahio-darker {
+  border-color: #9E9E9E;
+  border-left-color: #212121;
+}
+
+/*# sourceMappingURL=ngx-loading.css.map */

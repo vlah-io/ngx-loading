@@ -1,0 +1,77 @@
+<div class="row mt-5">
+  <div class="col">
+    <h4 class="display-4 mb-0 size-2">Bouncing dots CSS animation</h4>
+    <hr class="mt-0 mb-4">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="btn-group btn-group-sm" role="group" aria-label="Language switch bar">
+      <button class="btn btn-dark"
+              [ngClass]="{active: isCurrentLang('en')}"
+              (click)="changeLang('en')">EN
+      </button>
+      <button class="btn btn-dark"
+              [ngClass]="{active: isCurrentLang('de')}"
+              (click)="changeLang('de')">DE
+      </button>
+    </div>
+    <div class="ml-4 btn-group btn-group-sm">
+      <button type="button" class="btn btn-dark"
+              (click)="state=!state">TURN {{state ? 'OFF' : 'ON'}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Directive</h6>
+        <p class="mt-4" style="min-height: 60px;" vlahioBouncingDots [isVisible]="state"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <app-bouncing-dots-example [title]="'No message'"
+                               [hideMessage]="true"
+                               [toggle]="state"></app-bouncing-dots-example>
+  </div>
+  <div class="col">
+    <app-bouncing-dots-example [title]="'Default message'"></app-bouncing-dots-example>
+  </div>
+  <div class="col">
+    <app-bouncing-dots-example [title]="'With message'"
+                               [message]="'Loading...'"></app-bouncing-dots-example>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col">
+    <h4 class="display-4 size-2">Directive markup</h4>
+    <pre><code class="language-html">
+      &lt;div vlahioBouncingDots [hideMessage]="true" [message]="'Loading...'" [isVisible]="true"&gt;&lt;/div&gt;
+    </code></pre>
+
+    <h4 class="display-4 size-2">Component markup</h4>
+    <p>Using <code>components</code> directly is highly discouraged. The recommended way of doing it is through
+      <code>dynamic component loading</code>.</p>
+    <pre><code class="language-typescript">
+      compRef: ComponentRef&lt;BouncingDotsCardComponent&gt;;
+
+      {{'constructor(private bouncingDotsWorker: BouncingDotsWorker) {'}}
+      {{'}'}}
+
+      {{'show(options: DisplayOptionsInterface): void {'}}
+      this.compRef = this.bouncingDotsWorker.display(options);
+      }
+
+      {{'hide(): void {'}}
+      this.bouncingDotsWorker.destroy(this.compRef);
+      }
+    </code></pre>
+  </div>
+</div>

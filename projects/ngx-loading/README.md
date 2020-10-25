@@ -1,24 +1,57 @@
-# NgxLoading
+@vlah.io/ngx-worker
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+CSS loading animations for Angular.
 
-## Code scaffolding
+### Available Directives (code example)
 
-Run `ng generate component component-name --project ngx-loading` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-loading`.
-> Note: Don't forget to add `--project ngx-loading` or else it will be added to the default project in your `angular.json` file. 
+The `loading` directive comes in various colour options: 
+`dark`, `blue`, `red`, `green`, `brown`, `yellow`, `white` and `darker`.
 
-## Build
+```
+  <td vlahioLoading
+      [isVisible]="true|false"
+      [align]="left|center|right"
+      [color]="vlahio-dark|green|red|..."></td>
+```
 
-Run `ng build ngx-loading` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+  <div vlahioBouncingDots
+       [hideMessage]="true"
+       [message]="'Loading...'"
+       [isVisible]="true"></div>
+```
 
-## Publishing
+```
+  <div vlahioSlidingDots
+       [hideMessage]="true"
+       [message]="'Loading...'"
+       [isVisible]="true"></div>
+```
 
-After building your library with `ng build ngx-loading`, go to the dist folder `cd dist/ngx-loading` and run `npm publish`.
+### Page loading animation (dynamically loaded)
 
-## Running unit tests
+```
+  compRef: ComponentRef<PageLoadingWorker>;
 
-Run `ng test ngx-loading` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  constructor(private pageLoadingWorker: PageLoadingWorker) {
+  }
 
-## Further help
+  show(options: DisplayOptionsInterface): void {
+  this.compRef = this.pageLoadingWorker.display(options);
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  hide(): void {
+  this.pageLoadingWorker.destroy(this.compRef);
+  }
+```
+
+### CSS dependencies
+
+```
+    /* You can add global styles to this file, and also import other style files */
+    @import "../../ngx-loading/src/assets/css/ngx-loading.css";
+    @import "../../ngx-loading/src/assets/css/page-loading.css";
+    @import "../../ngx-loading/src/assets/css/sliding-dots.css";
+    @import "../../ngx-loading/src/assets/css/bouncing-dots.css";
+```
+For more details read [here](https://github.com/vlah-io/ngx-loading/blob/master/INSTALLATION.md).
