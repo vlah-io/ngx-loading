@@ -26,7 +26,7 @@
     "make-patch-release": "npm run fix-version-patch && npm run git-commit && npm version patch",
     "make-minor-release": "npm run fix-version-minor && npm run git-commit && npm version minor",
     "make-major-release": "npm run fix-version-major && npm run git-commit && npm version major",
-    "publish-release": "cd dist/ngx-worker && npm publish --access=public && cd ../../"
+    "publish-release": "cd dist/ngx-loading && npm publish --access=public && cd ../../"
   },
   "private": false,
   "dependencies": {
