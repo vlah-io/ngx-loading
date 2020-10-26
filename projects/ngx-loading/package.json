@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^10.2.0",
     "@angular/core": "^10.2.0",
-    "@vlah.io/ngx-worker": "^4.0.0",
+    "@vlah.io/ngx-worker": "^4.0.1",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0"
   },
