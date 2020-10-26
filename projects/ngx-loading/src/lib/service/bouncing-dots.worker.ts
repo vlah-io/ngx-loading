@@ -10,6 +10,10 @@ export class BouncingDotsWorker {
   constructor(private factoryWorker: FactoryWorker) {
   }
 
+  get error$(): EventEmitter<DOMException> {
+    return this.factoryWorker.error$;
+  }
+
   display(options: DisplayOptionsInterface = {}): ComponentRef<BouncingDotsComponent> {
     const {message, hideMessage, container} = options;
 
@@ -22,10 +26,6 @@ export class BouncingDotsWorker {
     this.factoryWorker.glue(compRef, {container});
 
     return compRef;
-  }
-
-  get error$(): EventEmitter<DOMException> {
-    return this.factoryWorker.error$;
   }
 
   destroy(compRef: ComponentRef<BouncingDotsComponent>): void {

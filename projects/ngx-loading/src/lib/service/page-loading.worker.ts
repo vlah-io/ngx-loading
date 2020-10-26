@@ -10,6 +10,10 @@ export class PageLoadingWorker {
   constructor(private factoryWorker: FactoryWorker) {
   }
 
+  get error$(): EventEmitter<DOMException> {
+    return this.factoryWorker.error$;
+  }
+
   display(options: DisplayOptionsInterface = {}): ComponentRef<PageLoadingComponent> {
     const {message, marginTop, container, hideMessage} = options;
 
@@ -23,10 +27,6 @@ export class PageLoadingWorker {
     this.factoryWorker.glue(compRef, {container});
 
     return compRef;
-  }
-
-  get error$(): EventEmitter<DOMException> {
-    return this.factoryWorker.error$;
   }
 
   destroy(compRef: ComponentRef<PageLoadingComponent>): void {
