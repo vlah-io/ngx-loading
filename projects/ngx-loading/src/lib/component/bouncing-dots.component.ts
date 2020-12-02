@@ -2,30 +2,37 @@ import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'vlahio-bouncing-dots',
-  template: `
-    <div vlahioBouncingDots
-         [hideMessage]="hideMessage"
-         [message]="message"
-         [isVisible]="state"></div>
-  `
+  templateUrl: './bouncing-dots.component.html'
 })
 export class BouncingDotsComponent {
-  state = true;
-  message: string;
-  hideMessage: boolean;
+  private state = true;
+  private msg: string | undefined;
+  private hideMsg: boolean | undefined;
 
-  @Input('isVisible')
-  set _isVisible(state: boolean) {
-    this.state = state;
+  get isVisible(): boolean {
+    return this.state;
   }
 
-  @Input('message')
-  set _message(message: string) {
-    this.message = message;
+  @Input()
+  set isVisible(bool: boolean) {
+    this.state = bool;
   }
 
-  @Input('hideMessage')
-  set _hideMessage(hideMessage: boolean) {
-    this.hideMessage = hideMessage;
+  get message(): string | undefined {
+    return this.msg;
+  }
+
+  @Input()
+  set message(str: string | undefined) {
+    this.msg = str;
+  }
+
+  get hideMessage(): boolean | undefined {
+    return this.hideMsg;
+  }
+
+  @Input()
+  set hideMessage(bool: boolean | undefined) {
+    this.hideMsg = bool;
   }
 }

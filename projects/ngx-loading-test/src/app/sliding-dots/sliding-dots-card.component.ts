@@ -8,25 +8,23 @@ import {SlidingDotsComponent} from '../../../../ngx-loading/src/lib/component/sl
   templateUrl: './sliding-dots-card.component.html'
 })
 export class SlidingDotsCardComponent implements OnInit {
-  private compRef: ComponentRef<SlidingDotsComponent>;
+  @Input() hideMessage: boolean | undefined;
+  @Input() message: string | undefined;
+  @Input() title: string | undefined;
+  @ViewChild('dotsContainer', {static: true}) container: ElementRef | undefined;
+  private compRef: ComponentRef<SlidingDotsComponent> | undefined;
 
-  @Input() hideMessage: boolean;
-  @Input() message: string;
-  @Input() title: string;
+  constructor(private slidingDotsWorker: SlidingDotsWorker) {
+  }
 
-  @Input('toggle')
-  set _toggle(toggle: boolean) {
+  @Input()
+  set toggle(bool: boolean) {
     if (this.compRef) {
       this.slidingDotsWorker.destroy(this.compRef);
     }
-    if (toggle) {
+    if (bool) {
       this.bind();
     }
-  }
-
-  @ViewChild('dotsContainer', {static: true}) container: ElementRef;
-
-  constructor(private slidingDotsWorker: SlidingDotsWorker) {
   }
 
   ngOnInit(): void {
@@ -39,7 +37,7 @@ export class SlidingDotsCardComponent implements OnInit {
     const options: DisplayOptionsInterface = {
       message: this.message,
       hideMessage: this.hideMessage,
-      container: this.container.nativeElement
+      container: this.container?.nativeElement
     };
     this.compRef = this.slidingDotsWorker.display(options);
   }

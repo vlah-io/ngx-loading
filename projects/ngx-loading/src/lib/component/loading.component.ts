@@ -2,30 +2,39 @@ import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'vlahio-loading',
-  template: `
-    <span vlahioLoading
-          [isVisible]="state"
-          [color]="color"
-          [align]="position"></span>
-  `
+  templateUrl: './loading.component.html'
 })
 export class LoadingComponent {
-  state = true;
-  color: string;
-  position: string;
+  private state = true;
+  private className: string | undefined;
+  private position: 'center' | 'left' | 'right' | undefined;
 
-  @Input('isVisible')
-  set _isVisible(state: boolean) {
-    this.state = state;
+  get isVisible(): boolean {
+    return this.state;
   }
 
-  @Input('color')
-  set _color(color: string) {
-    this.color = color;
+  @Input()
+  set isVisible(bool: boolean) {
+    this.state = bool;
   }
 
-  @Input('align')
-  set _align(position: string) {
+  get color(): string | undefined {
+    return this.className;
+  }
+
+  @Input()
+  set color(className: string | undefined) {
+    if (className) {
+      this.className = className;
+    }
+  }
+
+  get align(): 'center' | 'left' | 'right' | undefined {
+    return this.position;
+  }
+
+  @Input()
+  set align(position: 'center' | 'left' | 'right' | undefined) {
     this.position = position;
   }
 }

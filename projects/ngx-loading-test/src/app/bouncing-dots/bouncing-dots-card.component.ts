@@ -8,25 +8,23 @@ import {BouncingDotsComponent} from '../../../../ngx-loading/src/lib/component/b
   templateUrl: './bouncing-dots-card.component.html'
 })
 export class BouncingDotsCardComponent implements OnInit {
-  private compRef: ComponentRef<BouncingDotsComponent>;
+  @Input() hideMessage: boolean | undefined;
+  @Input() message: string | undefined;
+  @Input() title: string | undefined;
+  @ViewChild('dotsContainer', {static: true}) container: ElementRef | undefined;
+  private compRef: ComponentRef<BouncingDotsComponent> | undefined;
 
-  @Input() hideMessage: boolean;
-  @Input() message: string;
-  @Input() title: string;
+  constructor(private bouncingDotsWorker: BouncingDotsWorker) {
+  }
 
-  @Input('toggle')
-  set _toggle(toggle: boolean) {
+  @Input()
+  set toggle(bool: boolean) {
     if (this.compRef) {
       this.bouncingDotsWorker.destroy(this.compRef);
     }
-    if (toggle) {
+    if (bool) {
       this.bind();
     }
-  }
-
-  @ViewChild('dotsContainer', {static: true}) container: ElementRef;
-
-  constructor(private bouncingDotsWorker: BouncingDotsWorker) {
   }
 
   ngOnInit(): void {
@@ -39,7 +37,7 @@ export class BouncingDotsCardComponent implements OnInit {
     const options: DisplayOptionsInterface = {
       message: this.message,
       hideMessage: this.hideMessage,
-      container: this.container.nativeElement
+      container: this.container?.nativeElement
     };
     this.compRef = this.bouncingDotsWorker.display(options);
   }

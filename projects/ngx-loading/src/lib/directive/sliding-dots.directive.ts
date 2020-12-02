@@ -10,10 +10,10 @@ import {NgxLoadingService} from '../service/ngx-loading.service';
 export class SlidingDotsDirective implements OnDestroy, OnInit {
   readonly el: HTMLDivElement;
   readonly messageEl: HTMLDivElement;
-  private subscriber$: Subscription;
-  private message: string;
-  private hideMessage: boolean;
-  private state: boolean;
+  private subscriber$: Subscription | undefined;
+  private msg: string | undefined;
+  private hideMsg: boolean | undefined;
+  private state: boolean | undefined;
 
   constructor(protected elRef: ElementRef,
               protected renderer: Renderer2,
@@ -38,36 +38,36 @@ export class SlidingDotsDirective implements OnDestroy, OnInit {
     this.messageEl = this.rendererWorker.createElement('div') as HTMLDivElement;
   }
 
-  @Input('message')
-  set _message(message: string) {
-    if (Object.prototype.toString.call(message) === '[object String]') {
-      this.message = message;
-      this.appendMessageEl(message);
+  @Input()
+  set message(str: string | undefined) {
+    if (Object.prototype.toString.call(str) === '[object String]') {
+      this.msg = str;
+      this.appendMessageEl(str);
     }
   }
 
-  @Input('hideMessage')
-  set _hideMessage(val: boolean) {
-    if (val === true) {
-      this.hideMessage = val;
+  @Input()
+  set hideMessage(bool: boolean | undefined) {
+    if (bool) {
+      this.hideMsg = bool;
     }
   }
 
-  @Input('isVisible')
-  set _isVisible(val: boolean) {
-    this.state = val;
+  @Input()
+  set isVisible(bool: boolean) {
+    this.state = bool;
     this.rendererWorker.removeChildNodes(this.elRef.nativeElement);
-    if (val === true) {
+    if (bool) {
       this.appendEl();
     }
   }
 
   ngOnInit(): void {
     this.subscriber$ = this.ngxLoadingService.initSubscription(
-      !this.message && !this.hideMessage ? (str: string) => this.appendMessageEl(str) : undefined
+      !this.msg && !this.hideMsg ? (str: string) => this.appendMessageEl(str) : undefined
     );
 
-    if (!this.hideMessage) {
+    if (!this.hideMsg) {
       this.renderer.insertBefore(this.el, this.messageEl, this.el.firstChild);
     }
   }
@@ -78,12 +78,14 @@ export class SlidingDotsDirective implements OnDestroy, OnInit {
     }
   }
 
-  appendMessageEl(str: string): void {
-    this.rendererWorker.removeChildNodes(this.messageEl);
-    this.renderer.appendChild(
-      this.messageEl,
-      this.renderer.createText(str)
-    );
+  appendMessageEl(str: string | undefined): void {
+    if(str) {
+      this.rendererWorker.removeChildNodes(this.messageEl);
+      this.renderer.appendChild(
+        this.messageEl,
+        this.renderer.createText(str)
+      );
+    }
   }
 
   appendEl(): void {

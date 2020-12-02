@@ -1,6 +1,6 @@
 export interface DisplayOptionsInterface {
-  message?: string;
-  marginTop?: string;
+  message?: string | undefined;
+  marginTop?: string | undefined;
   container?: HTMLElement;
-  hideMessage?: boolean;
+  hideMessage?: boolean | undefined;
 }

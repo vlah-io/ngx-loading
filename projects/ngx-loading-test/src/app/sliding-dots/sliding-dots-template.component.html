@@ -7,19 +7,19 @@
 
 <div class="row">
   <div class="col">
-    <div class="btn-group btn-group-sm" role="group" aria-label="Language switch bar">
-      <button class="btn btn-dark"
+    <div aria-label="Language switch bar" class="btn-group btn-group-sm" role="group">
+      <button (click)="changeLang('en')"
               [ngClass]="{active: isCurrentLang('en')}"
-              (click)="changeLang('en')">EN
+              class="btn btn-dark">EN
       </button>
-      <button class="btn btn-dark"
+      <button (click)="changeLang('de')"
               [ngClass]="{active: isCurrentLang('de')}"
-              (click)="changeLang('de')">DE
+              class="btn btn-dark">DE
       </button>
     </div>
     <div class="ml-4 btn-group btn-group-sm">
-      <button type="button" class="btn btn-dark"
-              (click)="state=!state">TURN {{state ? 'OFF' : 'ON'}}
+      <button (click)="state=!state" class="btn btn-dark"
+              type="button">TURN {{state ? 'OFF' : 'ON'}}
       </button>
     </div>
   </div>
@@ -30,22 +30,22 @@
     <div class="card">
       <div class="card-body">
         <h6 class="card-subtitle mb-2 text-muted">Directive</h6>
-        <p class="mt-4" style="min-height: 60px;" vlahioSlidingDots [isVisible]="state"></p>
+        <p [isVisible]="state" class="mt-4" style="min-height: 60px;" vlahioSlidingDots></p>
       </div>
     </div>
   </div>
 
   <div class="col">
-    <app-sliding-dots-example [title]="'No message'"
-                              [hideMessage]="true"
+    <app-sliding-dots-example [hideMessage]="true"
+                              [title]="'No message'"
                               [toggle]="state"></app-sliding-dots-example>
   </div>
   <div class="col">
     <app-sliding-dots-example [title]="'Default message'"></app-sliding-dots-example>
   </div>
   <div class="col">
-    <app-sliding-dots-example [title]="'With message'"
-                              [message]="'Loading'"></app-sliding-dots-example>
+    <app-sliding-dots-example [message]="'Loading'"
+                              [title]="'With message'"></app-sliding-dots-example>
   </div>
 </div>
 

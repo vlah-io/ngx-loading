@@ -6,7 +6,7 @@ Package generated with `angular-cli` as follows
 ### Create new
 
 ```
-  ng new ngx-loading --createApplication=false --prefix=vlah
+  ng new ngx-loading --createApplication=false --prefix=vlahio
   cd ngx-loading
 ```
 
@@ -14,7 +14,7 @@ Package generated with `angular-cli` as follows
 
 ```
   cd ngx-loading
-  ng generate library ngx-loading --prefix=vlah
+  ng generate library ngx-loading --prefix=vlahio
 ```
 
 ### Generate test application

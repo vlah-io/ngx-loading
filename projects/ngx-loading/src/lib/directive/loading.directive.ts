@@ -6,8 +6,8 @@ import {RendererWorker} from '@vlah.io/ngx-worker';
 })
 export class LoadingDirective {
   readonly el: HTMLSpanElement;
-  private color: string;
-  private position: string;
+  private className: string | undefined;
+  private position: 'center' | 'left' | 'right' | undefined;
 
   constructor(private elRef: ElementRef,
               private renderer: Renderer2,
@@ -16,42 +16,44 @@ export class LoadingDirective {
     this.el = this.renderer.createElement('span');
   }
 
-  @Input('isVisible')
-  set _isVisible(state: boolean) {
-    if (state === true) {
-      this.addClass(this.color);
+  @Input()
+  set isVisible(state: boolean) {
+    if (state) {
+      this.addClass(this.className);
       this.render(this.position);
     } else {
       this.rendererWorker.removeChildNodes(this.elRef.nativeElement);
     }
   }
 
-  @Input('color')
-  set _color(color: string) {
-    this.addClass(color);
+  @Input()
+  set color(className: string | undefined) {
+    this.addClass(className);
   }
 
-  @Input('align')
-  set _align(position: string) {
+  @Input()
+  set align(position: 'center' | 'left' | 'right' | undefined) {
     this.render(position);
   }
 
-  addClass(color?: string): void {
-    if (Object.prototype.toString.call(color) === '[object String]') {
-      this.color = color;
+  addClass(className?: string): void {
+    if (Object.prototype.toString.call(className) === '[object String]') {
+      this.className = className;
       this.renderer.removeAttribute(this.el, 'class');
     }
 
     this.renderer.addClass(this.el, 'vlahio-loader');
-    this.renderer.addClass(this.el, color || 'vlahio-dark');
+    this.renderer.addClass(this.el, className || 'vlahio-dark');
   }
 
-  render(position?: string): void {
+  render(position?: 'center' | 'left' | 'right' | undefined): void {
     let spanElement;
     if (Object.prototype.toString.call(position) === '[object String]') {
       this.position = position;
       spanElement = this.renderer.createElement('span');
-      this.renderer.setStyle(spanElement, 'text-align', position);
+      if (position) {
+        this.renderer.setStyle(spanElement, 'text-align', position);
+      }
       this.renderer.setStyle(spanElement, 'display', 'block');
       this.renderer.appendChild(spanElement, this.el);
       this.rendererWorker.removeChildNodes(this.elRef.nativeElement);

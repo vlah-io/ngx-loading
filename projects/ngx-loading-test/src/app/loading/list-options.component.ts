@@ -5,10 +5,10 @@ import {Component} from '@angular/core';
   templateUrl: './list-options.component.html'
 })
 export class ListOptionsComponent {
-  align = 'center';
+  align: 'left' | 'center' | 'right' = 'center';
   state = true;
-  color: string;
+  color: string | undefined;
 
-  alignments = ['left', 'center', 'right'];
+  alignments: ('left' | 'center' | 'right')[] = ['left', 'center', 'right'];
   colors = [undefined, 'blue', 'red', 'green', 'brown', 'yellow', 'white', 'darker'];
 }

@@ -20,8 +20,8 @@ export class SlidingDotsWorker {
     const compRef = this.factoryWorker.make(SlidingDotsComponent);
     const compRefInstance = compRef.instance as SlidingDotsComponent;
 
-    compRefInstance._message = message;
-    compRefInstance._hideMessage = hideMessage;
+    compRefInstance.message = message;
+    compRefInstance.hideMessage = hideMessage;
 
     this.factoryWorker.glue(compRef, {container});
 

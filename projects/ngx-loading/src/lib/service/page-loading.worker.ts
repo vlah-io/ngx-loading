@@ -20,9 +20,9 @@ export class PageLoadingWorker {
     const compRef = this.factoryWorker.make(PageLoadingComponent);
     const compRefInstance = compRef.instance as PageLoadingComponent;
 
-    compRefInstance._message = message;
-    compRefInstance._marginTop = marginTop;
-    compRefInstance._hideMessage = hideMessage;
+    compRefInstance.message = message;
+    compRefInstance.marginTop = marginTop;
+    compRefInstance.hideMessage = hideMessage;
 
     this.factoryWorker.glue(compRef, {container});
 

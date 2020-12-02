@@ -2,37 +2,47 @@ import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'vlahio-page-loader',
-  template: `
-    <div vlahioPageLoading
-         [isVisible]="state"
-         [marginTop]="marginTop"
-         [message]="message"
-         [hideMessage]="hideMessage"></div>
-  `
+  templateUrl: './page-loading.component.html'
 })
 export class PageLoadingComponent {
-  state = true;
-  marginTop: string;
-  message: string;
-  hideMessage: boolean;
+  private state = true;
+  private pixelsStr: string | undefined;
+  private msg: string | undefined;
+  private hideMsg: boolean | undefined;
 
-  @Input('isVisible')
-  set _isVisible(state: boolean) {
-    this.state = state;
+  get isVisible(): boolean {
+    return this.state;
   }
 
-  @Input('message')
-  set _message(message: string) {
-    this.message = message;
+  @Input()
+  set isVisible(bool: boolean) {
+    this.state = bool;
   }
 
-  @Input('hideMessage')
-  set _hideMessage(hideMessage: boolean) {
-    this.hideMessage = hideMessage;
+  get message(): string | undefined {
+    return this.msg;
   }
 
-  @Input('marginTop')
-  set _marginTop(marginTop: string) {
-    this.marginTop = marginTop;
+  @Input()
+  set message(str: string | undefined) {
+    this.msg = str;
+  }
+
+  get hideMessage(): boolean | undefined {
+    return this.hideMsg;
+  }
+
+  @Input()
+  set hideMessage(bool: boolean | undefined) {
+    this.hideMsg = bool;
+  }
+
+  get marginTop(): string | undefined {
+    return this.pixelsStr;
+  }
+
+  @Input()
+  set marginTop(str: string | undefined) {
+    this.pixelsStr = str;
   }
 }

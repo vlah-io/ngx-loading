@@ -11,10 +11,10 @@ export class PageLoadingDirective implements OnInit, OnDestroy {
   readonly backdrop: HTMLDivElement;
   readonly el: HTMLDivElement;
   readonly messageEl: HTMLDivElement;
-  private message: string;
-  private hideMessage: boolean;
+  private msg: string | undefined;
+  private hideMsg: boolean | undefined;
   private state = true;
-  private subscriber$: Subscription;
+  private subscriber$: Subscription | undefined;
 
   constructor(private elRef: ElementRef,
               private renderer: Renderer2,
@@ -44,41 +44,43 @@ export class PageLoadingDirective implements OnInit, OnDestroy {
     ) as HTMLDivElement;
   }
 
-  @Input('message')
-  set _message(message: string) {
-    if (Object.prototype.toString.call(message) === '[object String]') {
-      this.message = message;
-      this.appendMessageEl(message);
+  @Input()
+  set message(str: string | undefined) {
+    if (Object.prototype.toString.call(str) === '[object String]') {
+      this.msg = str;
+      this.appendMessageEl(str);
     }
   }
 
-  @Input('hideMessage')
-  set _hideMessage(val: boolean) {
-    if (val === true) {
-      this.hideMessage = val;
+  @Input()
+  set hideMessage(bool: boolean | undefined) {
+    if (bool) {
+      this.hideMsg = bool;
     } else {
       this.renderer.appendChild(this.el, this.messageEl);
     }
   }
 
-  @Input('isVisible')
-  set _isVisible(val: boolean) {
-    this.state = val;
+  @Input()
+  set isVisible(bool: boolean) {
+    this.state = bool;
     this.rendererWorker.removeChildNodes(this.elRef.nativeElement);
-    if (val === true) {
+    if (bool) {
       this.appendEl();
     }
   }
 
-  @Input('marginTop')
-  set _marginTop(marginTop: string) {
-    this.renderer.setStyle(this.backdrop, 'top', marginTop);
-    this.renderer.setStyle(this.backdrop, 'height', `calc(100vh - ${marginTop})`);
+  @Input()
+  set marginTop(pixelsStr: string | undefined) {
+    if (pixelsStr) {
+      this.renderer.setStyle(this.backdrop, 'top', pixelsStr);
+      this.renderer.setStyle(this.backdrop, 'height', `calc(100vh - ${pixelsStr})`);
+    }
   }
 
   ngOnInit(): void {
     this.subscriber$ = this.ngxLoadingService.initSubscription(
-      !this.message && !this.hideMessage ? (str: string) => this.appendMessageEl(str) : undefined
+      !this.msg && !this.hideMsg ? (str: string) => this.appendMessageEl(str) : undefined
     );
   }
 
@@ -88,12 +90,14 @@ export class PageLoadingDirective implements OnInit, OnDestroy {
     }
   }
 
-  appendMessageEl(str: string): void {
-    this.rendererWorker.removeChildNodes(this.messageEl);
-    this.renderer.appendChild(
-      this.messageEl,
-      this.renderer.createText(str)
-    );
+  appendMessageEl(str: string | undefined): void {
+    if (str) {
+      this.rendererWorker.removeChildNodes(this.messageEl);
+      this.renderer.appendChild(
+        this.messageEl,
+        this.renderer.createText(str)
+      );
+    }
   }
 
   appendEl(): void {

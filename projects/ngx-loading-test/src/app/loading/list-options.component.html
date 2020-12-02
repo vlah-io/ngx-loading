@@ -1,7 +1,7 @@
 <table class="table table-sm table-bordered">
   <tr class="text-center">
     <td>
-      <vlahio-loading [isVisible]="state" [align]="align" [color]="color"></vlahio-loading>
+      <vlahio-loading [align]="align" [color]="color" [isVisible]="state"></vlahio-loading>
     </td>
     <td>
       <code>
@@ -11,7 +11,7 @@
     <td><span class="badge badge-danger">not recommended</span></td>
   </tr>
   <tr class="text-center">
-    <td vlahioLoading [isVisible]="state" [color]="color" [align]="align"></td>
+    <td [align]="align" [color]="color" [isVisible]="state" vlahioLoading></td>
     <td>
       <code>
         &lt;td vlahioLoading [isVisible]="{{state}}" [align]="{{align}}" [color]="{{color}}"&gt;&lt;/td&gt;
@@ -20,40 +20,47 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td vlahioLoading [isVisible]="true" [align]="align"></td>
-    <td class="text-center"
-        vlahioLoading [isVisible]="true" [color]="color"></td>
-    <td class="text-center"
-        vlahioLoading [isVisible]="state"></td>
+    <td [color]="color"
+        [isVisible]="true"
+        [align]="align"
+        vlahioLoading></td>
+    <td [color]="color"
+        [isVisible]="true"
+        class="text-center"
+        vlahioLoading></td>
+    <td [color]="color"
+        [isVisible]="state"
+        class="text-center"
+        vlahioLoading></td>
   </tr>
   <tr class="text-center">
     <td>
-      <div class="btn-group btn-group-sm" role="group" aria-label="Horizontal alignment">
-        <button type="button" class="btn btn-dark"
-                *ngFor="let x of alignments"
+      <div aria-label="Horizontal alignment" class="btn-group btn-group-sm" role="group">
+        <button (click)="align = x" *ngFor="let x of alignments"
                 [ngClass]="{active: align === x}"
-                (click)="align = x">{{x}}
+                class="btn btn-dark"
+                type="button">{{x}}
         </button>
       </div>
     </td>
     <td>
-      <div class="btn-group btn-group-sm" role="group" aria-label="Horizontal alignment">
-        <button type="button" class="btn btn-dark"
-                *ngFor="let c of colors"
+      <div aria-label="Horizontal alignment" class="btn-group btn-group-sm" role="group">
+        <button (click)="color = 'vlahio-' + (c || 'dark')" *ngFor="let c of colors"
                 [ngClass]="{active: color === c}"
-                (click)="color = 'vlahio-' + (c || 'dark')">{{c || 'dark'}}
+                class="btn btn-dark"
+                type="button">{{c || 'dark'}}
         </button>
       </div>
     </td>
     <td>
-      <div class="btn-group btn-group-sm" role="group" aria-label="Horizontal alignment">
-        <button type="button" class="btn btn-dark"
-                [ngClass]="{active: state === true}"
-                (click)="state = true">on
+      <div aria-label="Horizontal alignment" class="btn-group btn-group-sm" role="group">
+        <button (click)="state = true" [ngClass]="{active: state === true}"
+                class="btn btn-dark"
+                type="button">on
         </button>
-        <button type="button" class="btn btn-sm btn-dark"
-                [ngClass]="{active: state === false}"
-                (click)="state = false">off
+        <button (click)="state = false" [ngClass]="{active: state === false}"
+                class="btn btn-sm btn-dark"
+                type="button">off
         </button>
       </div>
     </td>
