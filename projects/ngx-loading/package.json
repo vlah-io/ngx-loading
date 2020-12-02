@@ -2,9 +2,9 @@
   "name": "@vlah.io/ngx-loading",
   "version": "11.0.0",
   "peerDependencies": {
-    "@angular/common": "^11.0.2",
-    "@angular/core": "^11.0.2",
-    "@vlah.io/ngx-worker": "^11.0.0",
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3",
+    "@vlah.io/ngx-worker": "^11.0.1",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0"
   },
